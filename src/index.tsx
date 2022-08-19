@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Cell } from './backend/Cell';
 import { gridExpander } from './backend/gridExpander';
@@ -11,15 +11,18 @@ const awesomeThingsHappen = (
   n: number,
   set = (c: Cell[]) => {}
 ): void => {
+  console.log('awesome');
   const gr2 = gridExpander(processGrid(grid, n), n);
   set(gr2);
-  console.log('set set');
 };
 
 const App: React.FC<{ gr: Cell[]; n: number }> = ({ gr, n }) => {
   const [cellsState, setCellsState] = useState<Cell[]>(gr);
 
-  setInterval(() => awesomeThingsHappen(cellsState, n, setCellsState), 5);
+  useEffect(() => {
+    setInterval(() => awesomeThingsHappen(cellsState, n, setCellsState), 2000);
+  }, []);
+
   return (
     <div>
       <h1>Game of Life:</h1>
