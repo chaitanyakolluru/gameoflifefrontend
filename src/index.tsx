@@ -6,24 +6,20 @@ import { gridGenerator } from './backend/gridGenerator';
 import { processGrid } from './backend/processGrid';
 import MyGrid from './MyGrid';
 
-const awesomeThingsHappen = async (
+const awesomeThingsHappen = (
   grid: Array<Cell>,
   n: number,
   set = (c: Cell[]) => {}
-): Promise<void> => {
+): void => {
   const gr2 = gridExpander(processGrid(grid, n), n);
-
-  setTimeout(() => {
-    set(gr2);
-    console.log('set stated');
-  }, 10000);
+  set(gr2);
+  console.log('set set');
 };
 
 const App: React.FC<{ gr: Cell[]; n: number }> = ({ gr, n }) => {
-  const [cellsState, setCellsState] = useState<Cell[]>([]);
+  const [cellsState, setCellsState] = useState<Cell[]>(gr);
 
-  awesomeThingsHappen(cellsState, n, setCellsState);
-
+  setInterval(() => awesomeThingsHappen(cellsState, n, setCellsState), 5);
   return (
     <div>
       <h1>Game of Life:</h1>
