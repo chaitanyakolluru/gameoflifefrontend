@@ -48,7 +48,6 @@ const Row: React.FC<{ size: number; cells: Cell[] }> = ({
 };
 
 const MyGrid: React.FC<{ size: number; cells: Cell[] }> = ({ size, cells }) => {
-  console.log(cells);
   return (
     <Box
       sx={{
@@ -63,26 +62,11 @@ const MyGrid: React.FC<{ size: number; cells: Cell[] }> = ({ size, cells }) => {
       }}
     >
       <Grid container spacing={0}>
-        <Row
-          size={size}
-          cells={[cells[0], cells[1], cells[2], cells[3], cells[4]]}
-        />
-        <Row
-          size={size}
-          cells={[cells[0], cells[1], cells[2], cells[3], cells[2]]}
-        />
-        <Row
-          size={size}
-          cells={[cells[0], cells[1], cells[2], cells[3], cells[2]]}
-        />
-        <Row
-          size={size}
-          cells={[cells[0], cells[1], cells[2], cells[3], cells[2]]}
-        />
-        <Row
-          size={size}
-          cells={[cells[0], cells[1], cells[2], cells[3], cells[2]]}
-        />
+        <Row size={size} cells={cells.splice(0, 6)} />
+        <Row size={size} cells={cells.splice(0, 6)} />
+        <Row size={size} cells={cells.splice(0, 6)} />
+        <Row size={size} cells={cells.splice(0, 6)} />
+        <Row size={size} cells={cells.splice(0, 6)} />
       </Grid>
     </Box>
   );
