@@ -1,28 +1,40 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { awesomeThingsHappen } from './backend';
 import { Cell } from './backend/Cell';
+import { gridExpander } from './backend/gridExpander';
 import { gridGenerator } from './backend/gridGenerator';
+import { processGrid } from './backend/processGrid';
 import MyGrid from './MyGrid';
 
-const App: React.FC<{ cells: Cell[] }> = ({ cells }) => {
-  console.log('App rendeing');
-  const [cellsState, SetCellsState] = useState<Cell[]>([]);
+const awesomeThingsHappen = async (
+  grid: Array<Cell>,
+  n: number,
+  set = (c: Cell[]) => {}
+): Promise<void> => {
+  const gr2 = gridExpander(processGrid(grid, n), n);
 
   setTimeout(() => {
-    SetCellsState(awesomeThingsHappen(gr, n));
-  }, 2000);
+    set(gr2);
+    console.log('set stated');
+  }, 10000);
+};
+
+const App: React.FC<{ gr: Cell[]; n: number }> = ({ gr, n }) => {
+  const [cellsState, setCellsState] = useState<Cell[]>([]);
+
+  awesomeThingsHappen(cellsState, n, setCellsState);
 
   return (
     <div>
       <h1>Game of Life:</h1>
-      {/* <ol>{cells}</ol> */}
       <MyGrid size={0} cells={cellsState} />
     </div>
   );
 };
 
-const [gr, n] = gridGenerator(5);
-createRoot(document.getElementById('root')!).render(
-  <App cells={awesomeThingsHappen(gr, n)} />
-);
+let [gr, n] = gridGenerator(5);
+createRoot(document.getElementById('root')!).render(<App gr={gr} n={n} />);
+
+// const [gr, n] = gridGenerator(5); // gridGenerator assigns a cell as being alive if the sum of x and y cooridnates equals an even number and dead if they sum upto an odd number
+// console.log('Initial grid: ', gr);
+// awesomeThingsHappen(gr, n);

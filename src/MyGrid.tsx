@@ -48,6 +48,26 @@ const Row: React.FC<{ size: number; cells: Cell[] }> = ({
 };
 
 const MyGrid: React.FC<{ size: number; cells: Cell[] }> = ({ size, cells }) => {
+  // console.log(
+  //   'my grid',
+  //   cells[6],
+  //   cells[7],
+  //   cells[8],
+  //   cells[9],
+  //   cells[10],
+  //   cells[11],
+  //   cells[12],
+  //   cells[13],
+  //   cells[14],
+  //   cells[15],
+  //   cells[16],
+  //   cells[17],
+  //   cells[18],
+  //   cells[19],
+  //   cells[20],
+
+  //   cells
+  // );
   return (
     <Box
       sx={{

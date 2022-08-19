@@ -23,5 +23,5 @@ export const processGrid = (grid: Array<Cell>, x: number): Array<Cell> => {
     c.alive = true;
   });
 
-  return gridExpander(res, x);
+  return res;
 };
