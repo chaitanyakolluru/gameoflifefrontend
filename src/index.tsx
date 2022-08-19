@@ -1,19 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createRoot } from 'react-dom/client';
+import { awesomeThingsHappen } from './backend';
+import { Cell } from './backend/Cell';
+import { gridGenerator } from './backend/gridGenerator';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const App: React.FC<{ c: Cell[] }> = ({ c }) => {
+  const ListItem: React.FC<{ c: Cell }> = ({ c }) => {
+    return <li>{c.toString()}</li>;
+  };
+
+  const list = c.map((cell) => <ListItem key={cell.toString()} c={cell} />);
+
+  return (
+    <div>
+      <h1>Game of Life:</h1>
+      <ol>{list}</ol>
+    </div>
+  );
+};
+
+const [gr, n] = gridGenerator(5);
+createRoot(document.getElementById('root')!).render(
+  <App c={awesomeThingsHappen(gr, n)} />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+console.log(awesomeThingsHappen(gr, n));
