@@ -24,7 +24,7 @@ const ItemLight = styled(Paper)(({ theme }) => ({
 const CellLight: React.FC<{ size: number }> = ({ size }) => {
   return (
     <Grid xs={size}>
-      <ItemLight>item</ItemLight>
+      <ItemLight>Cell</ItemLight>
     </Grid>
   );
 };
@@ -32,7 +32,7 @@ const CellLight: React.FC<{ size: number }> = ({ size }) => {
 const CellDark: React.FC<{ size: number }> = ({ size }): JSX.Element => {
   return (
     <Grid xs={size}>
-      <ItemDark>item</ItemDark>
+      <ItemDark>Cell</ItemDark>
     </Grid>
   );
 };
@@ -48,6 +48,7 @@ const Row: React.FC<{ size: number; cells: Cell[] }> = ({
 };
 
 const MyGrid: React.FC<{ size: number; cells: Cell[] }> = ({ size, cells }) => {
+  console.log(cells);
   return (
     <Box
       sx={{
@@ -64,7 +65,7 @@ const MyGrid: React.FC<{ size: number; cells: Cell[] }> = ({ size, cells }) => {
       <Grid container spacing={0}>
         <Row
           size={size}
-          cells={[cells[0], cells[1], cells[1], cells[1], cells[1]]}
+          cells={[cells[0], cells[1], cells[2], cells[3], cells[4]]}
         />
         <Row
           size={size}

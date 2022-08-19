@@ -1,10 +1,10 @@
 import { Cell } from './Cell';
 import { gridExpander } from './gridExpander';
 import {
-  fewerThanTwo,
-  twoOrThree,
-  moreThanThree,
   comesBackAlive,
+  fewerThanTwo,
+  moreThanThree,
+  twoOrThree,
 } from './rules';
 
 export const processGrid = (grid: Array<Cell>, x: number): Array<Cell> => {
@@ -23,5 +23,5 @@ export const processGrid = (grid: Array<Cell>, x: number): Array<Cell> => {
     c.alive = true;
   });
 
-  return res;
+  return gridExpander(res, x);
 };
