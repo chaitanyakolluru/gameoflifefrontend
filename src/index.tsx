@@ -11,16 +11,15 @@ const awesomeThingsHappen = (
   n: number,
   set = (c: Cell[]) => {}
 ): void => {
-  console.log('awesome');
   const gr2 = gridExpander(processGrid(grid, n), n);
   set(gr2);
 };
 
 const App: React.FC<{ gr: Cell[]; n: number }> = ({ gr, n }) => {
-  const [cellsState, setCellsState] = useState<Cell[]>(gr);
+  const [cellsState, setCellsState] = useState<Cell[]>([]);
 
   useEffect(() => {
-    setInterval(() => awesomeThingsHappen(cellsState, n, setCellsState), 2000);
+    setInterval(() => awesomeThingsHappen(gr, n, setCellsState), 2000);
   }, []);
 
   return (
